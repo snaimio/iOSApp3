@@ -26,6 +26,7 @@ A complete hydration tracking app for Apple Watch that helps users stay hydrated
 
 ## 📁 Project Structure
 
+```
 Hydration Watch App/
 ├── HydrationApp.swift          (App entry point)
 ├── Models/
@@ -39,6 +40,7 @@ Hydration Watch App/
 │   ├── SettingsView.swift      (App settings)
 │   └── AddWaterView.swift      (Custom log sheet)
 └── Assets.xcassets             (App icon)
+```
 
 ## 🚀 How to Run
 
