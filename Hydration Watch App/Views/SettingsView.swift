@@ -5,7 +5,7 @@
 //  =====================================
 
 // Import SwiftUI framework for building the user interface
-// SwiftUI provides List, Section, Toggle, Stepper, Button, etc.
+// SwiftUI provides List, Section, Toggle, Button, etc.
 
 import SwiftUI
 
@@ -18,6 +18,7 @@ struct SettingsView: View {
     // MARK: - Properties
     
     // Access to the HydrationManager (shared data and logic)
+    // @EnvironmentObject allows this view to use the same manager instance
     
     @EnvironmentObject var manager: HydrationManager
     
@@ -26,6 +27,7 @@ struct SettingsView: View {
     let reminderTimes = ["1 hour", "2 hours", "3 hours", "4 hours"]
     
     // State variables to control sheet presentations
+    // @State means these values are local to this view
     
     @State private var showingReminderPicker = false  // Shows reminder picker sheet
     @State private var showingWeightPicker = false    // Shows weight picker sheet
@@ -146,9 +148,7 @@ struct SettingsView: View {
                 Toggle("Reminders", isOn: $manager.reminderSettings.enabled)
                     .font(.system(size: 14, weight: .medium))
                     .onChange(of: manager.reminderSettings.enabled) { oldValue, newValue in
-                        
                         // When toggle changes, schedule or remove reminders
-                        
                         if newValue {
                             Task { @MainActor in
                                 manager.scheduleReminders()  // Start reminders
@@ -237,6 +237,7 @@ struct WeightPickerView: View {
     @Binding var isPresented: Bool  // Controls sheet dismissal
     
     // Array of weights from 30kg to 200kg
+    
     let weights = Array(30...200)
     
     // MARK: - Body
