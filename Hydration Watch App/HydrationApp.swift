@@ -8,10 +8,13 @@
 import SwiftUI
 
 @main
-struct Hydration_Watch_AppApp: App {
+struct HydrationApp: App {
+    @StateObject private var manager = HydrationManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(manager)
         }
     }
 }
